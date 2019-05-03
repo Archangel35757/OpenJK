@@ -1365,6 +1365,8 @@ void CFxScheduler::AddScheduledEffects( bool portal )
 	vec3_t						axis[3];
 	int							oldEntNum = -1, oldBoltIndex = -1, oldModelNum = -1;
 	qboolean					doesBoltExist  = qfalse;
+	qboolean					bROFF2_SchedEFX = qfalse;
+
 
 	if (portal)
 	{
@@ -1404,7 +1406,6 @@ void CFxScheduler::AddScheduledEffects( bool portal )
 			}
 			else
 			{	//bolted on effect
-				qboolean bROFF2_SchedEFX = qfalse;
 				// do we need to go and re-get the bolt matrix again? Since it takes time lets try to do it only once
 				if ((effect->mModelNum != oldModelNum) || (effect->mEntNum != oldEntNum) || (effect->mBoltNum != oldBoltIndex))
 				{
