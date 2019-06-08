@@ -1040,6 +1040,8 @@ Ghoul2 Insert End
 	float		resultspeed;
 	int			lastMoveTime;
 	vec3_t		movedir;
+	vec3_t		rofStartOrigin;		//Where you are at start of ROF animation
+	vec3_t		rofStartAngles;		//Your orientation at start of ROF animation
 	vec3_t		lastOrigin;			//Where you were last frame
 	vec3_t		lastAngles;			//Where you were looking last frame
 	float		mass;				//How heavy you are

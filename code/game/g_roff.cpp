@@ -324,17 +324,15 @@ defaultoffsetposition:
 		{
 			if (strcmp(addlArg, "absolute") == 0)
 			{
-				VectorClear(ent->pos1);
-				VectorClear(ent->pos2);
+				// reset current origin and angles to values for the start of the ROF animation
+				VectorCopy(ent->rofStartOrigin, ent->pos1);
+				VectorCopy(ent->rofStartAngles, ent->pos2);
 
-				VectorClear(ent->currentOrigin);
-				VectorClear(ent->currentAngles);
+				VectorCopy(ent->rofStartOrigin, ent->currentOrigin);
+				VectorCopy(ent->rofStartAngles, ent->currentAngles);
 
-				VectorClear(ent->s.pos.trBase);
-				VectorClear(ent->s.apos.trBase);
-
-				VectorClear(ent->s.origin2);
-				VectorClear(ent->s.angles2);
+				VectorCopy(ent->rofStartOrigin, ent->s.pos.trBase);
+				VectorCopy(ent->rofStartAngles, ent->s.apos.trBase);
 			}
 			else if (strcmp(addlArg, "relative") == 0)
 			{
@@ -767,6 +765,13 @@ void G_Roff( gentity_t *ent )
 					ang[0], ang[1], ang[2] );
 	}
 #endif
+
+	// store the current origin and angles at the start of the ROF animation
+	if (ent->roff_ctr == 0)
+	{
+		VectorCopy(ent->currentOrigin, ent->rofStartOrigin);
+		VectorCopy(ent->currentAngles, ent->rofStartAngles);
+	}
 
 	if ( ent->client )
 	{
